@@ -12,7 +12,7 @@ import static xiaojin.xiaojin_mod.create.CreateItem.EXAMPLE_ITEM;
 
 /**
  * @author 尽
- * @apiNote
+ * @apiNote 创建一个创造模式物品栏
  */
 public class CreateCreationModeTab {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MOD_ID);
