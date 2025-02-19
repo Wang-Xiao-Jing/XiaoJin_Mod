@@ -1,4 +1,4 @@
-package xiaojin.xiaojin_mod.datagen;
+package xiaojin.xiaojin_mod.datagen.loot;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -15,7 +15,7 @@ import java.util.concurrent.CompletableFuture;
  * @apiNote 战利品表数据生成器
  */
 public class DatagenLootTableProvider extends LootTableProvider {
-    public DatagenLootTableProvider(PackOutput output, Set<ResourceKey<LootTable>> requiredTables, List<SubProviderEntry> subProviders, CompletableFuture<HolderLookup.Provider> registries) {
-        super(output, requiredTables, subProviders, registries);
+    public DatagenLootTableProvider(PackOutput output, List<SubProviderEntry> subProviders, CompletableFuture<HolderLookup.Provider> registries) {
+        super(output, Set.of(), subProviders, registries);
     }
 }

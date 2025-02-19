@@ -11,13 +11,15 @@ import net.neoforged.neoforge.common.data.SoundDefinitionsProvider;
 
 import java.util.concurrent.CompletableFuture;
 
+import static xiaojin.xiaojin_mod.XiaojinModMain.MOD_ID;
+
 /**
  * @author 尽
  * @apiNote 物品标签数据生成器
  */
 public class DatagenItemTags<T> extends TagsProvider<Item> {
-    protected DatagenItemTags(PackOutput output, ResourceKey<? extends Registry<Item>> registryKey, CompletableFuture<HolderLookup.Provider> lookupProvider, String modId) {
-        super(output, registryKey, lookupProvider, CompletableFuture.completedFuture(TagsProvider.TagLookup.empty()), modId);
+    protected DatagenItemTags(PackOutput output, ResourceKey<? extends Registry<Item>> registryKey, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+        super(output, registryKey, lookupProvider, CompletableFuture.completedFuture(TagsProvider.TagLookup.empty()), MOD_ID);
     }
 
     @Override
