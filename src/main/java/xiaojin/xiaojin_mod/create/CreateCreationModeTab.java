@@ -15,7 +15,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.function.Supplier;
 
 import static xiaojin.xiaojin_mod.XiaojinModMain.MOD_ID;
-import static xiaojin.xiaojin_mod.create.CreateBlock.EXAMPLE_BLOCK_ITEM;
+import static xiaojin.xiaojin_mod.create.CreateBlock.EXAMPLE_BLOCK;
 import static xiaojin.xiaojin_mod.create.CreateItem.EXAMPLE_ITEM;
 
 /**
@@ -30,7 +30,7 @@ public class CreateCreationModeTab extends EventHooks{
             () -> EXAMPLE_ITEM.get().getDefaultInstance(),
             (parameters, output) ->{
                     output.accept(EXAMPLE_ITEM);
-                    output.accept(EXAMPLE_BLOCK_ITEM);
+                    output.accept(EXAMPLE_BLOCK.blockItem);
             });
 
     /**
@@ -39,7 +39,7 @@ public class CreateCreationModeTab extends EventHooks{
     public static void registerCapabilities(BuildCreativeModeTabContentsEvent event)
     {
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS)
-            event.accept(EXAMPLE_BLOCK_ITEM);
+            event.accept(EXAMPLE_BLOCK.blockItem);
     }
 
     /**

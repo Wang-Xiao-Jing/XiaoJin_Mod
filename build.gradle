@@ -40,13 +40,13 @@ neoForge {
     // This line is optional. Access Transformers are automatically detected
     // accessTransformers = project.files('src/main/resources/META-INF/accesstransformer.cfg')
 
-    // Default run configurations.
-    // These can be tweaked, removed, or duplicated as needed.
+    // 默认运行配置.
+    // 这些可以根据需要进行调整、删除或复制。.
     runs {
         client {
             client()
 
-            // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
+            // 以逗号分隔的命名空间列表，用于加载游戏测试。空=所有命名空间。.
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
@@ -56,22 +56,27 @@ neoForge {
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
-        // This run config launches GameTestServer and runs all registered gametests, then exits.
-        // By default, the server will crash when no gametests are provided.
-        // The gametest system is also enabled by default for other run configs under the /test command.
+        // 此运行配置启动GameTestServer并运行所有已注册的游戏测试，然后退出.
+        // 默认情况下，当没有提供游戏测试时，服务器将崩溃.
+        // 默认情况下，gametest系统也会在/test命令下为其他运行配置启用.
         gameTestServer {
             type = "gameTestServer"
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
+        // 数据生成器
         data {
             clientData()
-
-            // example of overriding the workingDirectory set in configureEach above, uncomment if you want to use it
+            def outputPath = file('src/generated/resources/').getAbsolutePath()
+            def outputPath1 = file('src/main/resources/').getAbsolutePath()
+            // 覆盖上述configureEach中设置的workingDirectory的示例，如果要使用它，请取消注释
             // gameDirectory = project.file('run-data')
 
-            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+            // 指定数据生成的modid、输出结果资源的位置以及查找现有资源的位置。
+            programArguments.addAll '--mod', project.mod_id,
+                    '--output', outputPath,
+                    '--existing', outputPath1,
+                    '--all'
         }
 
         // applies to all the run configs above
@@ -91,9 +96,9 @@ neoForge {
     }
 
     mods {
-        // define mod <-> source bindings
-        // these are used to tell the game which sources are for which mod
-        // multi mod projects should define one per mod
+        // 定义mod<->源绑定
+        // 这些用于告诉游戏哪些来源适用于哪个模组
+        // 多mod项目应该为每个mod定义一个
         "${mod_id}" {
             sourceSet(sourceSets.main)
         }

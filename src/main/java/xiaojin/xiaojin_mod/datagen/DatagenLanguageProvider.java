@@ -20,13 +20,13 @@ public class DatagenLanguageProvider extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
-        add(BUILDING_BLOCKS, "XiaoJing's Mod|建筑方块");
+        add(BUILDING_BLOCKS, "XiaoJing's Mod的建筑方块");
         addItem(EXAMPLE_ITEM, "示例物品");
-        addBlock(EXAMPLE_BLOCK, "示例方块");
+        addBlock(EXAMPLE_BLOCK.block, "示例方块");
     }
 
     public <R, T extends R> void add(DeferredHolder<R, T> itemGroup, String name) {
-        add(itemGroup.getRegisteredName(), name);
-        System.out.println(itemGroup.getRegisteredName());
+        String itemGroupName = "itemGroup." + itemGroup.getId().toString().replace(":", ".");
+        add(itemGroupName, name);
     }
 }

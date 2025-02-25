@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "xiaojin_mod:item/example_item"
+  }
+}

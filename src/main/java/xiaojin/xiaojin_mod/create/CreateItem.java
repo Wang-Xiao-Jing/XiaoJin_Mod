@@ -12,7 +12,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import static xiaojin.xiaojin_mod.XiaojinModMain.MOD_ID;
 
 /**
- * @apiNote
+ * @apiNote 创建物品
  * @author 尽
  */
 public class CreateItem {

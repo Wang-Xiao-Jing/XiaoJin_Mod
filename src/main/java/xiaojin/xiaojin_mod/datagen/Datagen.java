@@ -3,14 +3,13 @@ package xiaojin.xiaojin_mod.datagen;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.loot.LootTableProvider;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
-import xiaojin.xiaojin_mod.datagen.loot.DatagenBlockLootTableProvider;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.Collections;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -21,20 +20,22 @@ import static xiaojin.xiaojin_mod.XiaojinModMain.MOD_ID;
  * @apiNote 数据生成
  */
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = MOD_ID)
-public class Datage{
+public class Datagen {
+
     @SubscribeEvent
     public static void gatherData(GatherDataEvent.Client event) {
-        event.createProvider(DatagenLanguageProvider::new);
-        event.createProvider(DatagenModelProvider::new);
-        event.createProvider(DatagenParticleDescriptionProvider::new);
-        event.createProvider(DatagenSoundDefinitionsProvider::new);
-        DataGenerator gen = event.getGenerator();
-        PackOutput packOutput = gen.getPackOutput();
-        CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
-        gen.addProvider(true, new DatagenAdvancementProvider(packOutput, lookupProvider, List.of()));
+        DataGenerator gen = event.getGenerator(); // 获取数据生成器
+        PackOutput packOutput = gen.getPackOutput(); // 获取输出路径
+        CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider(); // 获取查找提供者
+        gen.addProvider(true, new DatagenAdvancementProvider(packOutput, lookupProvider, List.of())); // 生成成就文件
+        gen.addProvider(true, new DatagenLanguageProvider(packOutput)); // 生成语言文件
+        gen.addProvider(true, new DatagenModelProvider(packOutput)); // 生成模型文件
+        gen.addProvider(true, new DatagenParticleDescriptionProvider(packOutput)); // 生成粒子描述文件
+        gen.addProvider(true, new DatagenSoundDefinitionsProvider(packOutput)); // 生成粒子定义文件
 //        gen.addProvider(event.includeReports(),
 //                new LootTableProvider(packOutput, Collections.emptySet(),
 //                        List.of(new LootTableProvider.SubProviderEntry(DatagenBlockLootTableProvider::new, LootContextParamSets.BLOCK)),
 //                        lookupProvider));
     }
+
 }

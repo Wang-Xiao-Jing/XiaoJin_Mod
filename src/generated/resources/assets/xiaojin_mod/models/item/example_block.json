@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "xiaojin_mod:example_block/aaaaaaaaa"
+  }
+}

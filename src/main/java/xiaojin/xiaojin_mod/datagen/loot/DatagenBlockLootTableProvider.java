@@ -21,7 +21,7 @@ public class DatagenBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        dropSelf(CreateBlock.EXAMPLE_BLOCK.get());
+        dropSelf(CreateBlock.EXAMPLE_BLOCK.getBlock());
     }
 
     /**
