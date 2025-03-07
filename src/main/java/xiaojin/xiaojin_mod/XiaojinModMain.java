@@ -35,6 +35,10 @@ public class XiaojinModMain
      * @return {@link ResourceLocation} 资源路径
      * */
     public static ResourceLocation prefix(String name) {
-        return ResourceLocation.fromNamespaceAndPath(MOD_ID, name.toLowerCase(Locale.ROOT));
+        return prefix(MOD_ID,name);
+    }
+
+    public static ResourceLocation prefix(String name, String modId) {
+        return ResourceLocation.fromNamespaceAndPath(modId, name.toLowerCase(Locale.ROOT));
     }
 }
